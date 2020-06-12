@@ -1,5 +1,5 @@
 /**
- * This is considered server and only server related activities
+ * This is server code and only server related activities
  */
 
 require("dotenv").config();

@@ -2,25 +2,25 @@
 
 const itemPrice1 = {
     product_id: 13860428,
-    current_price: 10,
+    current_price: new Number(20.10).toFixed(2),
     currency: "USD"
 }
 
 const itemPrice2 = {
     product_id: 15117729,
-    current_price: 20,
+    current_price: new Number(20.10).toFixed(2),
     currency: "USD"
 }
 
 const itemPrice3 = {
     product_id: 16483589,
-    current_price: 30,
+    current_price: new Number(20.10).toFixed(2),
     currency: "USD"
 }
 
 const itemPrice4 = {
     product_id: 16696652,
-    current_price: 30,
+    current_price: new Number(20.10).toFixed(2),
     currency: "USD"
 }
 

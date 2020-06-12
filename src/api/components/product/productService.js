@@ -18,7 +18,6 @@ const STATUS_500 = 500;
  * 
  * @param {product id} productId 
  */
-
 async function aggregateProductInfo(productId) {
   
   //validate input
