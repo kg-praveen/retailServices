@@ -1,5 +1,5 @@
 /**
- * This layer will have the business logic.
+ * Service layer will have the business logic.
  * Controller/Route later will talk to this.
  * This will eventaully make API calls or retrieve data from datastore
  */
@@ -55,6 +55,7 @@ async function aggregateProductInfo(productId) {
 /**
  * Retrived product name from internal catalog API.
  * @param {product_id} productId
+ * @todo implement hystrix, timeout
  */
 const getProductName = (productId) => {
   let body = "";

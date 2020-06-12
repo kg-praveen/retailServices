@@ -1,5 +1,7 @@
+//consider this as temporary data store for product price
+
 const itemPrice1 = {
-    product_id: 1386042,
+    product_id: 13860428,
     current_price: 10,
     currency: "USD"
 }
