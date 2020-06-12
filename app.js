@@ -1,3 +1,7 @@
+/**
+ * This is considered server and only server related activities
+ */
+
 require("dotenv").config();
 const express = require("express");
 const router = require("./src/api/components/product/productRoutes");
