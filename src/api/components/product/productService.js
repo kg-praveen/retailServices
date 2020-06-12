@@ -6,24 +6,82 @@
 const https = require("https");
 const { listenerCount } = require("../../../../app");
 const priceModel = require("../price/priceModel");
+const { log } = require("console");
 
 async function aggregateProductInfo(productId) {
+  /**
+   * productinfo object will hold
+   * 1) productData
+   * 2) price data
+   * 3) responseCode/status
+   */
   let productInfo = {};
+  let errorInfo = {};
 
-  let [productData, priceData] = await Promise.all([
-    getProductName(productId),
-    getProductPrice(productId),
-  ]);
+  //fetch product information
+  let productData = await getProductName(productId).catch((error) => {
+    errorInfo = error;
+  });
 
-  if (typeof productData.error == "string") {
-    productInfo.status = 404;
-    productInfo.data = "product not found";
+  if (!productData) {
+    return constructErrorResponse(errorInfo);
+  }
 
-    return productInfo;
-  } // if an error exists
+  //fetch pricing information
+  let priceData = await getProductPrice(productId).catch((error) => {
+    errorInfo = error;
+  });
 
-  //now need to construct the JSON
-  return priceData;
+  if (!priceData) {
+    return constructErrorResponse(errorInfo);
+  }
+
+  //build product info object
+  productInfo.productId = productId;
+  productInfo.productData = productData;
+  productInfo.priceData = priceData;
+  return constructSuccessJSONResponse(productInfo);
+}
+
+/**
+ * constructs success JSON
+ * @param {holds successrespone of product and price info} productInfo 
+ */
+function constructSuccessJSONResponse(productInfo) {
+  //1) retireve data from product object
+  //2) retireve data from price object
+  //3) Error response?
+  //4) How to send back status and response ?
+  let aggregatedResponse = {
+    status: 200,
+    response: {
+      product: {
+        product_id: productInfo.productId,
+        item: {
+          product_description: {
+            title: productInfo.productData.product_description.title,
+          },
+        },
+        price: {
+          current_price: productInfo.priceData.current_price,
+          currency: productInfo.priceData.currency,
+        },
+      },
+    },
+  };
+  return aggregatedResponse;
+}
+
+/**
+ * constructs error JSON response
+ * @param {holds error information} errorInfo 
+ */
+function constructErrorResponse(errorInfo) {
+  let errorResponse = {
+    status: errorInfo.status,
+    response: errorInfo.error,
+  };
+  return errorResponse;
 }
 
 const getProductName = (productId) => {
@@ -41,17 +99,40 @@ const getProductName = (productId) => {
       res.on("end", () => {
         try {
           body = JSON.parse(body);
+
           if (typeof body.product.item.product_description == "undefined") {
-            reject(new Error("item name not found"));
+            reject({
+              status: 404,
+              error: {
+                error_code: "NAME_NOT_FOUND",
+                error_message: "Name information is missing",
+              },
+            });
           } else {
             resolve(body.product.item);
           }
         } catch (e) {
-          reject(new Error(e.message));
+          reject({
+            status: 500,
+            error: {
+              error_code: "SYSTEM_ERROR",
+              error_message: "Something went wrong, please try again",
+            },
+          });
         }
       });
+    }).on("error", (e) => {
+        console.error(e);
+        reject({
+            status: 500,
+            error: {
+              error_code: "SYSTEM_ERROR",
+              error_message: "Something went wrong, please try again",
+            },
+          });
     });
   });
+  
   return productName;
 };
 

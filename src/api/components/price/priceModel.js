@@ -23,7 +23,6 @@ const itemPrice4 = {
 }
 
 const findItemPrice = (productId) => {
-    console.log(productId);
     switch(productId) {
         case "13860428" :
             return itemPrice1;
