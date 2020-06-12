@@ -1,18 +1,16 @@
 require("dotenv").config();
 const express = require("express");
-const router = require("./src/api/components/product/routes")
+const router = require("./src/api/components/product/productRoutes");
+const pricingRouter = require("./src/api/components/price/pricingRoutes");
 const app = express();
 const API_VERSION = 'v1';
 const API_SUFFIX = 'browse';
+const PRICE_API_SUFFIX = 'price';
 
 //set router
 app.use(`\/${API_SUFFIX}\/${API_VERSION}`,router);
+app.use(`\/${PRICE_API_SUFFIX}\/${API_VERSION}`,pricingRouter);
 
-// define product aggregator route
-router.get('/product-aggregator', function (req, res) {
-    console.log("this is router: " + router);
-    res.send('Testing product API from app')
-  })
 
 //starting server on port 3000
 app.listen(3000, () => {
