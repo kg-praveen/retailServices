@@ -6,7 +6,7 @@ var express = require("express");
 var productRouter = express.Router();
 const service = require('./productService');
 // define product aggregator route
-productRouter.get("/product-aggregator/:productId", (req, res) => {
+productRouter.get("/product-aggregator/:productId", async (req, res) => {
   let productId = req.params.productId;
   if (parseInt(productId) != productId) {
     res.status('404')
@@ -15,10 +15,10 @@ productRouter.get("/product-aggregator/:productId", (req, res) => {
     erroMessage: 'Prouct Not Found'});
     return;
   }
-  Promise.all([service.getProductName(productId), service.getProductPrice()]).then((data) => {
-    console.log(data);
-    res.send(data);
-  });
+  
+  const data = await service.aggregateProductInfo(productId);
+  res.send(data);
+
 });
 
 
