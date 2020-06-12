@@ -9,6 +9,16 @@ const productUtils = require("./productUtils");
 const STATUS_404 = 404;
 const STATUS_500 = 500;
 
+/**
+ * This function:
+ * 1) Validates input
+ * 2) Retrieves product name from another API
+ * 3) Retrieves pricing data from pricing API
+ * 4) Aggregates the results from above 2 APIs
+ * 
+ * @param {product id} productId 
+ */
+
 async function aggregateProductInfo(productId) {
   
   //validate input
@@ -48,7 +58,7 @@ async function aggregateProductInfo(productId) {
     productData: productData,
     priceData: priceData,
   };
-
+  console.log("Required product and price data retrieved successfuly. Building response...");
   return productUtils.constructSuccessJSONResponse(productInfo);
 }
 
@@ -80,6 +90,7 @@ const getProductName = (productId) => {
                 )
               );
             } else {
+              console.log("Product data retrieved sucessfully. Resolving promise...");  
               resolve(body.product.item);
             }
           } catch (e) {
@@ -87,7 +98,7 @@ const getProductName = (productId) => {
               productUtils.constructError(
                 STATUS_500,
                 "SYSTEM_ERROR",
-                "Something went wrong, please try again"
+                "Oops, something went wrong, please try again"
               )
             );
           }
@@ -99,7 +110,7 @@ const getProductName = (productId) => {
           productUtils.constructError(
             STATUS_500,
             "SYSTEM_ERROR",
-            "Something went wrong, please try again"
+            "Oops, something went wrong, please try again"
           )
         );
       });
@@ -119,6 +130,7 @@ const getProductPrice = (productId) => {
       (res) => {
         res.on("data", (data) => {
           body = JSON.parse(data);
+          console.log("Pricing data retrieved sucessfully. Resolving promise...");
           resolve(body);
         });
       }
