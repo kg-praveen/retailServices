@@ -4,7 +4,7 @@
 
 require("dotenv").config();
 const express = require("express");
-const router = require("./src/api/components/product/productRoutes");
+const productRouter = require("./src/api/components/product/productRoutes");
 const pricingRouter = require("./src/api/components/price/pricingRoutes");
 const app = express();
 const API_VERSION = 'v1';
@@ -12,7 +12,7 @@ const API_SUFFIX = 'browse';
 const PRICE_API_SUFFIX = 'price';
 
 //set router
-app.use(`\/${API_SUFFIX}\/${API_VERSION}`,router);
+app.use(`\/${API_SUFFIX}\/${API_VERSION}`,productRouter);
 app.use(`\/${PRICE_API_SUFFIX}\/${API_VERSION}`,pricingRouter);
 
 

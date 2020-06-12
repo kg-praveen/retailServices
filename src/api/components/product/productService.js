@@ -4,9 +4,7 @@
  * This will eventaully make API calls or retrieve data from datastore
  */
 const https = require("https");
-const { listenerCount } = require("../../../../app");
-const priceModel = require("../price/priceModel");
-const { log } = require("console");
+const http = require("http");
 const productUtils = require("./productUtils");
 
 async function aggregateProductInfo(productId) {
@@ -16,7 +14,7 @@ async function aggregateProductInfo(productId) {
    * 2) price data
    * 3) responseCode/status
    */
-  let productInfo = {};
+
   let errorInfo = {};
 
   //fetch product information
@@ -38,76 +36,85 @@ async function aggregateProductInfo(productId) {
   }
 
   //build product info object
-  productInfo.productId = productId;
-  productInfo.productData = productData;
-  productInfo.priceData = priceData;
+  let productInfo = {
+    productId: productId,
+    productData: productData,
+    priceData: priceData,
+  };
+
   return productUtils.constructSuccessJSONResponse(productInfo);
 }
 
+/**
+ * Retrived product name from internal catalog API.
+ * @param {product_id} productId 
+ */
 const getProductName = (productId) => {
   let body = "";
-  let url =
-    "https://redsky.target.com/v2/pdp/tcin/" +
-    productId +
-    "?excludes=taxonomy,price,promotion,bulk_ship,rating_and_review_reviews,rating_and_review_statistics,question_answer_statistics,available_to_promise_network,deep_red_labels,esp";
+  let url = `https://redsky.target.com/v2/pdp/tcin/${productId}?excludes=taxonomy,price,promotion,bulk_ship,rating_and_review_reviews,rating_and_review_statistics,question_answer_statistics,available_to_promise_network,deep_red_labels,esp`;
 
   const productName = new Promise((resolve, reject) => {
-    https.get(url, (res) => {
-      res.on("data", (data) => {
-        body += data;
-      });
-      res.on("end", () => {
-        try {
-          body = JSON.parse(body);
+    https
+      .get(url, (res) => {
+        res.on("data", (data) => {
+          body += data;
+        });
+        res.on("end", () => {
+          try {
+            body = JSON.parse(body);
 
-          if (typeof body.product.item.product_description == "undefined") {
-            reject({
-              status: 404,
-              error: {
-                error_code: "NAME_NOT_FOUND",
-                error_message: "Name information is missing",
-              },
-            });
-          } else {
-            resolve(body.product.item);
+            if (typeof body.product.item.product_description == "undefined") {
+              reject(
+                productUtils.constructError(
+                  404,
+                  "NAME_NOT_FOUND",
+                  "Name information is missing"
+                )
+              );
+            } else {
+              resolve(body.product.item);
+            }
+          } catch (e) {
+            reject(
+              productUtils.constructError(
+                500,
+                "SYSTEM_ERROR",
+                "Something went wrong, please try again"
+              )
+            );
           }
-        } catch (e) {
-          reject({
-            status: 500,
-            error: {
-              error_code: "SYSTEM_ERROR",
-              error_message: "Something went wrong, please try again",
-            },
-          });
-        }
-      });
-    }).on("error", (e) => {
+        });
+      })
+      .on("error", (e) => {
         console.error(e);
-        reject({
-            status: 500,
-            error: {
-              error_code: "SYSTEM_ERROR",
-              error_message: "Something went wrong, please try again",
-            },
-          });
-    });
+        reject(
+          productUtils.constructError(
+            500,
+            "SYSTEM_ERROR",
+            "Something went wrong, please try again"
+          )
+        );
+      });
   });
-  
+
   return productName;
 };
 
+/**
+ * Gets price for a given productId
+ * @param {product_id} productId 
+ */
 const getProductPrice = (productId) => {
   const productPrice = new Promise((resolve, reject) => {
-    console.log("***** product price");
-    //retrieve the price from pricing model
-    const priceInfo = {
-      current_price: 10,
-      currency: "USD",
-    };
-    setTimeout(() => {
-      priceDate = priceModel.findItemPrice(productId);
-      resolve(priceDate);
-    }, 500);
+    http.get(
+      `http://localhost:3000/price/v1/product-price/${productId}`,
+      (res) => {
+        res.on("data", (data) => {
+          body = JSON.parse(data);
+          resolve(body);
+        });
+      }
+    );
   });
   return productPrice;
 };

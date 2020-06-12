@@ -44,7 +44,24 @@ function constructSuccessJSONResponse(productInfo) {
     return errorResponse;
   }
 
+  /**
+   * Builds the error object
+   * @param {response code} status 
+   * @param {short string error code} errorCode 
+   * @param {error message limited} errorMessage 
+   */
+  function constructError(status, errorCode, errorMessage) {
+   return {
+        status: status,
+        error: {
+          error_code: errorCode,
+          error_message: errorMessage,
+        }
+      };
+  }
+
   module.exports = {
     constructErrorResponse,
-    constructSuccessJSONResponse
+    constructSuccessJSONResponse,
+    constructError
   };
