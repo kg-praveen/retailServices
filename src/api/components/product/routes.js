@@ -11,7 +11,7 @@ var router = express.Router();
 
 // define product aggregator route
 router.get('/product-aggregator', function (req, res) {
-  res.send('Testing product API')
+  res.send('Testing product API updated1')
 })
 
 

@@ -6,9 +6,7 @@ const API_VERSION = 'v1';
 const API_SUFFIX = 'browse';
 
 //set router
-app.use(`${API_SUFFIX}/${API_VERSION}`,router);
-
-console.log(router);
+app.use(`\/${API_SUFFIX}\/${API_VERSION}`,router);
 
 // define product aggregator route
 router.get('/product-aggregator', function (req, res) {
