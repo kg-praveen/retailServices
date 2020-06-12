@@ -16,3 +16,5 @@ app.use(`\/${PRICE_API_SUFFIX}\/${API_VERSION}`,pricingRouter);
 app.listen(3000, () => {
     console.log("Server is running on port 3000");
   });
+
+

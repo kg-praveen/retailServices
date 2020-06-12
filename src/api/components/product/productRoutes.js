@@ -1,20 +1,52 @@
 var express = require("express");
+const https = require("https");
 var productRouter = express.Router();
 
+const getProductName = () => {
+  let body = "";
+  const product_id = "15117729";
+  let url =
+    "https://redsky.target.com/v2/pdp/tcin/" +
+    product_id +
+    "?excludes=taxonomy,price,promotion,bulk_ship,rating_and_review_reviews,rating_and_review_statistics,question_answer_statistics,available_to_promise_network,deep_red_labels,esp";
+    
+  const productName = new Promise((resolve, reject) => {
+    https.get(url, (res) => {
+      res.on("data", (data) => {
+        body += data;
+      });
+      res.on("end", () => {
+        body = JSON.parse(body);
+        console.log("response", body);
+        resolve(body);
+      });
+    });
+  });
+  return productName;
+};
+
+const getProductPrice = () => {
+  const productPrice = new Promise((resolve, reject) => {
+    console.log("***** product price");
+    resolve("product price");
+  });
+  return productPrice;
+};
 // define product aggregator route
-productRouter.get("/product-aggregator/:product_id", function (req, res) {
-  let product_id = req.params.product_id;
+productRouter.get("/product-aggregator", (req, res) => {
+  let productId = req.params.productId;
 
-  if (parseInt(product_id) != product_id) {
-    res
-      .status("404")
-      .send({ error: "Product Id: " + product_id + " is not a valid id." });
-    return;
-  } // input validation -- makes sure the input product_id string is equivalent to an integer
-
-  res
-    .status("200")
-    .send({ product_id: product_id, product_name: "LG 55 inch TV" });
+  // if (parseInt(productId) != productId) {
+  // res.status('404')
+  // .send({
+  // errorCode: 'ERROR_NOT_FOUND',
+  // erroMessage: 'Prouct Not Found'});
+  // return;
+  // }
+  Promise.all([getProductName(), getProductPrice()]).then((data) => {
+    console.log(data);
+    res.send(`Testing product API`);
+  });
 });
 
 module.exports = productRouter;
