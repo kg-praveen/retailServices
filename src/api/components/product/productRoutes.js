@@ -17,15 +17,11 @@ productRouter.get("/product-aggregator", (req, res) => {
   // erroMessage: 'Prouct Not Found'});
   // return;
   // }
-
   Promise.all([getProductName(), getProductPrice()]).then((data) => {
     console.log(data);
     res.send(`Testing product API`);
   });
-
-
 });
-
 
 //make API call to get the product name
 const getProductName = () => {
