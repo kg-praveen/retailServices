@@ -6,14 +6,21 @@
 const https = require("https");
 const http = require("http");
 const productUtils = require("./productUtils");
+const STATUS_404 = 404;
+const STATUS_500 = 500;
 
 async function aggregateProductInfo(productId) {
-  /**
-   * productinfo object will hold
-   * 1) productData
-   * 2) price data
-   * 3) responseCode/status
-   */
+  
+  //validate input
+  if (parseInt(productId) != productId) {
+    return {
+      status: STATUS_404,
+      response: {
+        error_code: "ERROR_NOT_FOUND",
+        error_message: "Prouct Not Found",
+      },
+    };
+  }
 
   let errorInfo = {};
 
@@ -47,7 +54,7 @@ async function aggregateProductInfo(productId) {
 
 /**
  * Retrived product name from internal catalog API.
- * @param {product_id} productId 
+ * @param {product_id} productId
  */
 const getProductName = (productId) => {
   let body = "";
@@ -66,7 +73,7 @@ const getProductName = (productId) => {
             if (typeof body.product.item.product_description == "undefined") {
               reject(
                 productUtils.constructError(
-                  404,
+                  STATUS_404,
                   "NAME_NOT_FOUND",
                   "Name information is missing"
                 )
@@ -77,7 +84,7 @@ const getProductName = (productId) => {
           } catch (e) {
             reject(
               productUtils.constructError(
-                500,
+                STATUS_500,
                 "SYSTEM_ERROR",
                 "Something went wrong, please try again"
               )
@@ -89,7 +96,7 @@ const getProductName = (productId) => {
         console.error(e);
         reject(
           productUtils.constructError(
-            500,
+            STATUS_500,
             "SYSTEM_ERROR",
             "Something went wrong, please try again"
           )
@@ -102,7 +109,7 @@ const getProductName = (productId) => {
 
 /**
  * Gets price for a given productId
- * @param {product_id} productId 
+ * @param {product_id} productId
  */
 const getProductPrice = (productId) => {
   const productPrice = new Promise((resolve, reject) => {

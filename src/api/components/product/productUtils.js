@@ -2,7 +2,7 @@
  * Basic UTIL class
  * 
  */
-
+const STATUS_200 = 200;
 /**
  * constructs success JSON
  * @param {holds successrespone of product and price info} productInfo 
@@ -13,7 +13,7 @@ function constructSuccessJSONResponse(productInfo) {
     //3) Error response?
     //4) How to send back status and response ?
     let aggregatedResponse = {
-      status: 200,
+      status: STATUS_200,
       response: {
         product: {
           product_id: productInfo.productId,
@@ -39,7 +39,7 @@ function constructSuccessJSONResponse(productInfo) {
   function constructErrorResponse(errorInfo) {
     let errorResponse = {
       status: errorInfo.status,
-      response: errorInfo.error,
+      response: errorInfo.error
     };
     return errorResponse;
   }
