@@ -5,12 +5,25 @@
  */
 const https = require("https");
 const { listenerCount } = require("../../../../app");
+const priceModel = require("../price/priceModel");
 
-async function aggregateProductInfo(productId){
-    let [productData, priceData] = await Promise.all([getProductName(productId), getProductPrice()]);
-    //now need to construct the JSON
-    return priceData;
+async function aggregateProductInfo(productId) {
+  let productInfo = {};
 
+  let [productData, priceData] = await Promise.all([
+    getProductName(productId),
+    getProductPrice(productId),
+  ]);
+
+  if (typeof productData.error == "string") {
+    productInfo.status = 404;
+    productInfo.data = "product not found";
+
+    return productInfo;
+  } // if an error exists
+
+  //now need to construct the JSON
+  return priceData;
 }
 
 const getProductName = (productId) => {
@@ -42,18 +55,18 @@ const getProductName = (productId) => {
   return productName;
 };
 
-const getProductPrice = () => {
+const getProductPrice = (productId) => {
   const productPrice = new Promise((resolve, reject) => {
     console.log("***** product price");
     //retrieve the price from pricing model
     const priceInfo = {
-        current_price: 10,
-        currency: "USD"
-    }
+      current_price: 10,
+      currency: "USD",
+    };
     setTimeout(() => {
-        resolve(priceInfo);
-    }, 500)
-    
+      priceDate = priceModel.findItemPrice(productId);
+      resolve(priceDate);
+    }, 500);
   });
   return productPrice;
 };
@@ -61,5 +74,5 @@ const getProductPrice = () => {
 module.exports = {
   getProductName,
   getProductPrice,
-  aggregateProductInfo
+  aggregateProductInfo,
 };
