@@ -126,7 +126,7 @@ describe("API", () => {
         .end((err, response) => {
           response.should.have.status(200);
           response.body.should.be.a('object');
-          response.body.error_code.should.to.equal("PRODUCT_NAME_NOT_FOUND");
+          response.body.error.error_code.should.to.equal("PRODUCT_PRICE_NOT_FOUND");
           done();
         }); //this test will fail as pricing is a mock API
     });
