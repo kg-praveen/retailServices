@@ -135,7 +135,6 @@ const getProductPrice = (productId) => {
           body = JSON.parse(data);
 
           if (body.error) {
-            console.log("I am inside error");
             reject(
               productUtils.constructError(
                 STATUS_404,
