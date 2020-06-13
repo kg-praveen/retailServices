@@ -3,27 +3,26 @@ Provides services for retail operations
 
 ## Unit Test and Code Coverage Report
 command: `npm test`
-outPut:
+> outPut:
 ```
-  API
+ API
     GET Product Info
 Product data retrieved sucessfully. Resolving promise...
 Pricing data retrieved sucessfully. Resolving promise...
 Required product and price data retrieved successfuly. Building response...
-      ✓ GET valid product (561ms)
+      ✓ GET valid product (535ms)
 Product data retrieved sucessfully. Resolving promise...
 Pricing data retrieved sucessfully. Resolving promise...
 Required product and price data retrieved successfuly. Building response...
-      ✓ GET valid product (402ms)
+      ✓ GET valid product (363ms)
 Product data retrieved sucessfully. Resolving promise...
 Pricing data retrieved sucessfully. Resolving promise...
 Required product and price data retrieved successfuly. Building response...
-      ✓ GET valid product (400ms)
+      ✓ GET valid product (385ms)
       ✓ GET product with invalid id
-      ✓ GET product with non-existing id (380ms)
+      ✓ GET product with non-existing id (327ms)
 Product data retrieved sucessfully. Resolving promise...
-I am inside error
-      ✓ GET product for item without price record (444ms)
+      ✓ GET product for item without price record (406ms)
     GET Price Info
       ✓ GET price for valid product
       ✓ GET price for invalid product id
@@ -55,16 +54,16 @@ I am inside error
 --------------------------------------------|---------|----------|---------|---------|-------------------
 File                                        | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 --------------------------------------------|---------|----------|---------|---------|-------------------
-All files                                   |   97.09 |    93.75 |   95.24 |   97.06 |                   
+All files                                   |   97.06 |    93.75 |   95.24 |   97.03 |                   
  myretail-target                            |     100 |       50 |     100 |     100 |                   
   app.js                                    |     100 |       50 |     100 |     100 | 18                
  myretail-target/src/api/components/price   |     100 |      100 |     100 |     100 |                   
   priceModel.js                             |     100 |      100 |     100 |     100 |                   
   pricingRoutes.js                          |     100 |      100 |     100 |     100 |                   
   pricingService.js                         |     100 |      100 |     100 |     100 |                   
- myretail-target/src/api/components/product |   95.38 |      100 |   94.12 |   95.38 |                   
+ myretail-target/src/api/components/product |   95.31 |      100 |   94.12 |   95.31 |                   
   productRoutes.js                          |     100 |      100 |     100 |     100 |                   
-  productService.js                         |      94 |      100 |   92.31 |      94 | 100-112           
+  productService.js                         |   93.88 |      100 |   92.31 |   93.88 | 100-112           
   productUtils.js                           |     100 |      100 |     100 |     100 |                   
 --------------------------------------------|---------|----------|---------|---------|-------------------
 npm ERR! Test failed.  See above for more details.
