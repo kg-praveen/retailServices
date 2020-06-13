@@ -1,13 +1,14 @@
 # retailServices
-Provides services for retail operations
-Tools used
-API supported
+Provides services for retail operations. 
+Tools used. 
+API supported. 
 
 ## How to install and run the app
 ### Download code
-1) Create a folder in your system where you want the app to run
+1) Create a folder in your system where you want to install and run the app.
 
 2) Initialize GIT repository using command `git init` would generate an similar outpuse like:
+
 ```
 Initialized empty Git repository in <your dir location>
 ```
@@ -26,8 +27,8 @@ Resolving deltas: 100% (101/101), done.
 4) Navigate to the created app folder
 
 ### Install dependencies
-1) Assuming that node and npm is installed, execure comman `npm install`.
-This would generate console log similar like below
+1) Assuming that node and npm is installed, execure comman `npm install`.This would generate console log similar like below:
+
 ```
 added 335 packages from 279 contributors and audited 335 packages in 3.287s
 
@@ -49,6 +50,15 @@ App started on port  3000
 ```
 
 ## Supported API methods
+### product-aggregator
+1) This app has live implementation of GET method to retrieve name and price for a given product.  
+
+#### URI template
+`http://<host>:<port>/browse/v1/product-aggregator/<productId>`
+#### Sample URL
+`http://localhost:3000/browse/v1/product-aggregator/13860428`
+
+2) This app has mock implementation of GET method to retrieve price for a given product
 
 ## How to interact with APIs
 
