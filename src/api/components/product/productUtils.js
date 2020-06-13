@@ -37,7 +37,7 @@ function constructSuccessJSONResponse(productInfo) {
 function constructErrorResponse(errorInfo) {
   let errorResponse = {
     status: errorInfo.status,
-    response: errorInfo.error,
+    response: errorInfo.error
   };
   return errorResponse;
 }
@@ -53,8 +53,8 @@ function constructError(status, errorCode, errorMessage) {
     status: status,
     error: {
       error_code: errorCode,
-      error_message: errorMessage,
-    },
+      error_message: errorMessage
+    }
   };
 }
 

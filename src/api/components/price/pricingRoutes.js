@@ -1,7 +1,7 @@
 var express = require("express");
 var pricingRouter = express.Router();
 const pricingService = require("./pricingService");
-const STATUS_404 = 404;
+const STATUS_400 = 400;
 const STATUS_200 = 200;
 
 // define get price route
@@ -10,9 +10,9 @@ pricingRouter.get("/product-price/:productId",  (req, res) => {
 
   //validate product id
   if (parseInt(productId) != productId) {
-    res.status(STATUS_404).json({
-      error_code: "ERROR_NOT_FOUND",
-      error_message: "Prouct Not Found",
+    res.status(STATUS_400).json({
+      error_code: "INVALID_PRODUCTID",
+        error_message: "ProuctID is not valid",
     });
     return;
   }

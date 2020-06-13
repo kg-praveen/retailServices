@@ -10,7 +10,6 @@ productRouter.get("/product-aggregator/:productId", async (req, res) => {
   let productId = req.params.productId;
   const productResponse = await service.aggregateProductInfo(productId);
   res.status(productResponse.status).json(productResponse.response);
-  return;
 });
 
 module.exports = productRouter;

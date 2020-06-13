@@ -8,6 +8,7 @@ const http = require("http");
 const productUtils = require("./productUtils");
 const STATUS_404 = 404;
 const STATUS_500 = 500;
+const STATUS_400 = 400;
 
 /**
  * This function:
@@ -15,18 +16,17 @@ const STATUS_500 = 500;
  * 2) Retrieves product name from another API
  * 3) Retrieves pricing data from pricing API
  * 4) Aggregates the results from above 2 APIs
- * 
- * @param {product id} productId 
+ *
+ * @param {product id} productId
  */
 async function aggregateProductInfo(productId) {
-  
   //validate input
   if (parseInt(productId) != productId) {
     return {
-      status: STATUS_404,
+      status: STATUS_400,
       response: {
-        error_code: "ERROR_NOT_FOUND",
-        error_message: "Prouct Not Found",
+        error_code: "INVALID_PRODUCTID",
+        error_message: "ProuctID is not valid",
       },
     };
   }
@@ -57,7 +57,9 @@ async function aggregateProductInfo(productId) {
     productData: productData,
     priceData: priceData,
   };
-  console.log("Required product and price data retrieved successfuly. Building response...");
+  console.log(
+    "Required product and price data retrieved successfuly. Building response..."
+  );
   return productUtils.constructSuccessJSONResponse(productInfo);
 }
 
@@ -84,12 +86,14 @@ const getProductName = (productId) => {
               reject(
                 productUtils.constructError(
                   STATUS_404,
-                  "NAME_NOT_FOUND",
-                  "Name information is missing"
+                  "PRODUCT_NAME_NOT_FOUND",
+                  "Product Name information is missing"
                 )
               );
             } else {
-              console.log("Product data retrieved sucessfully. Resolving promise...");  
+              console.log(
+                "Product data retrieved sucessfully. Resolving promise..."
+              );
               resolve(body.product.item);
             }
           } catch (e) {
@@ -129,8 +133,23 @@ const getProductPrice = (productId) => {
       (res) => {
         res.on("data", (data) => {
           body = JSON.parse(data);
-          console.log("Pricing data retrieved sucessfully. Resolving promise...");
-          resolve(body);
+
+          if (body.error) {
+            console.log("I am inside error");
+            reject(
+              productUtils.constructError(
+                STATUS_404,
+                "PRODUCT_PRICE_NOT_FOUND",
+                "Product price information is missing"
+              )
+            );
+
+          } else {
+            console.log(
+              "Pricing data retrieved sucessfully. Resolving promise..."
+            );
+            resolve(body);
+          }
         });
       }
     );
