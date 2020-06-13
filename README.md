@@ -135,7 +135,8 @@ Sample output:
 Run command `npm test`to trigger unit tests and covrage report. 
 
 > Sample failing and low coverage as I was building
-```
+
+``
  API
     GET Product Info
 Product data retrieved sucessfully. Resolving promise...
@@ -198,9 +199,10 @@ All files                                   |   97.06 |    93.75 |   95.24 |   9
   productUtils.js                           |     100 |      100 |     100 |     100 |                   
 --------------------------------------------|---------|----------|---------|---------|-------------------
 npm ERR! Test failed.  See above for more details.
-```
+``
 > Sample after completion
-```
+
+``
   API
     GET Product Info
 Product data retrieved sucessfully. Resolving promise...
