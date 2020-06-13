@@ -134,9 +134,7 @@ Sample output:
 ## Unit Test and Code Coverage Report
 Run command `npm test`to trigger unit tests and covrage report. 
 
-*note: current version of code has 1 test failing. this is intentional.*
-
-> Sample Output:
+> Sample Output: shown in failure mode.
 ```
  API
     GET Product Info
