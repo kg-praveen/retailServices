@@ -74,7 +74,7 @@ For web app to use the API, there is no need of a API_KEY at this point of time.
 
 ### Sample Interaction output
  Case: `product-aggregator 200/SUCCESS` <br/>
- Sample URL: `http://localhost:3000/browse/v1/product-aggregator/13860428`
+ Sample URL: `http://localhost:3000/browse/v1/product-aggregator/13860428` <br/>
  Sample output: 
 ```
 {
@@ -92,8 +92,8 @@ For web app to use the API, there is no need of a API_KEY at this point of time.
    }
 }
 ```
-Case: `product-aggregator 404/NOT FOUND`
-Sample URL: `http://localhost:3000/browse/v1/product-aggregator/1386042`
+Case: `product-aggregator 404/NOT FOUND` <br/>
+Sample URL: `http://localhost:3000/browse/v1/product-aggregator/1386042` <br/>
 Sample output: 
 ```
 {
@@ -101,8 +101,8 @@ Sample output:
    "error_message":"Product Name information is missing"
 }
 ```
-Case: `product-aggregator 400/BAD REQUEST`
-Sample URL: `http://localhost:3000/browse/v1/product-aggregator/1386042a`
+Case: `product-aggregator 400/BAD REQUEST` <br/>
+Sample URL: `http://localhost:3000/browse/v1/product-aggregator/1386042a` <br/>
 Sample output: 
 ```
 {
@@ -111,9 +111,23 @@ Sample output:
 }
 ```
 
+```
+Case: `product-aggregator 404/NOT FOUND` - this is case where price data alone does not exit<br/>
+Sample URL: `http://localhost:3000/browse/v1/product-aggregator/1386042a` <br/>
+Sample output: 
+```
+{
+   "error_code":"PRODUCT_PRICE_NOT_FOUND",
+   "error_message":"Product price information is missing"
+}
+```
+
 ## Unit Test and Code Coverage Report
-command: `npm test`
-> outPut:
+Run command `npm test`to trigger unit tests and covrage report. 
+
+*note: current version of code has 1 test failing. this is intentional.*
+
+> Sample Output:
 ```
  API
     GET Product Info
