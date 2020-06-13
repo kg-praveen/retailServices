@@ -7,6 +7,7 @@ const express = require("express");
 const productRouter = require("./src/api/components/product/productRoutes");
 const pricingRouter = require("./src/api/components/price/pricingRoutes");
 const app = express();
+app.use(express.json());
 
 
 //set router
@@ -14,8 +15,9 @@ app.use(`\/${process.env.PRODUCT_API_SUFFIX}\/${process.env.API_VERSION}`,produc
 app.use(`\/${process.env.PRICE_API_SUFFIX}\/${process.env.API_VERSION}`,pricingRouter);
 
 //starting server
-app.listen(process.env.SERVER_PORT, () => {
-    console.log("Server is running");
+const PORT = process.env.SERVER_PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`App started on port  ${PORT}`);
     
   });
 

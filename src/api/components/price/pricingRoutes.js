@@ -10,14 +10,14 @@ pricingRouter.get("/product-price/:productId",  (req, res) => {
 
   //validate product id
   if (parseInt(productId) != productId) {
-    res.status(STATUS_404).send({
+    res.status(STATUS_404).json({
       error_code: "ERROR_NOT_FOUND",
       error_message: "Prouct Not Found",
     });
     return;
   }
 
-  res.status(STATUS_200).send(pricingService.fetchItemPrice(productId));
+  res.status(STATUS_200).json(pricingService.fetchItemPrice(productId));
 });
 
 module.exports = pricingRouter;
