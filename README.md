@@ -2,14 +2,14 @@
 Provides product service implementation for a retail store. Product/Browse domain API supports view of product data. This is done by aggregating data from multiple internal data sources. 
 
 1) Tools used
-> node
-> express
-> mocha
-> chai
-> dotenv
+- node
+- express
+- mocha
+- chai
+- dotenv
 
 2) API supported
-> GET /browse/product-aggregator
+- GET /browse/product-aggregator
 
 
 ## How to install and run the app
