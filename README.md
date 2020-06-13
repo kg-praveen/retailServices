@@ -134,7 +134,7 @@ Sample output:
 ## Unit Test and Code Coverage Report
 Run command `npm test`to trigger unit tests and covrage report. 
 
-> Sample Output: shown in failure mode.
+> Sample failing and low coverage as I was building
 ```
  API
     GET Product Info
@@ -198,4 +198,48 @@ All files                                   |   97.06 |    93.75 |   95.24 |   9
   productUtils.js                           |     100 |      100 |     100 |     100 |                   
 --------------------------------------------|---------|----------|---------|---------|-------------------
 npm ERR! Test failed.  See above for more details.
+```
+> Sample after completion
+```
+  API
+    GET Product Info
+Product data retrieved sucessfully. Resolving promise...
+Pricing data retrieved sucessfully. Resolving promise...
+Required product and price data retrieved successfuly. Building response...
+      ✓ GET valid product (558ms)
+Product data retrieved sucessfully. Resolving promise...
+Pricing data retrieved sucessfully. Resolving promise...
+Required product and price data retrieved successfuly. Building response...
+      ✓ GET valid product (364ms)
+Product data retrieved sucessfully. Resolving promise...
+Pricing data retrieved sucessfully. Resolving promise...
+Required product and price data retrieved successfuly. Building response...
+      ✓ GET valid product (343ms)
+      ✓ GET product with invalid id
+      ✓ GET product with non-existing id (346ms)
+Product data retrieved sucessfully. Resolving promise...
+      ✓ GET product for item without price record (447ms)
+    GET Price Info
+      ✓ GET price for valid product
+      ✓ GET price for invalid product id
+      ✓ GET price for non-existing product id
+
+
+  9 passing (2s)
+
+--------------------------------------------|---------|----------|---------|---------|-------------------
+File                                        | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+--------------------------------------------|---------|----------|---------|---------|-------------------
+All files                                   |   97.06 |      100 |   95.24 |   97.03 |                   
+ myretail-target                            |     100 |      100 |     100 |     100 |                   
+  app.js                                    |     100 |      100 |     100 |     100 |                   
+ myretail-target/src/api/components/price   |     100 |      100 |     100 |     100 |                   
+  priceModel.js                             |     100 |      100 |     100 |     100 |                   
+  pricingRoutes.js                          |     100 |      100 |     100 |     100 |                   
+  pricingService.js                         |     100 |      100 |     100 |     100 |                   
+ myretail-target/src/api/components/product |   95.31 |      100 |   94.12 |   95.31 |                   
+  productRoutes.js                          |     100 |      100 |     100 |     100 |                   
+  productService.js                         |   93.88 |      100 |   92.31 |   93.88 | 100-112           
+  productUtils.js                           |     100 |      100 |     100 |     100 |                   
+--------------------------------------------|---------|----------|---------|---------|-------------------
 ```
