@@ -1,28 +1,41 @@
 # retailServices
 Provides services for retail operations
 
-## Unit Test and Code Coverage
+## Unit Test and Code Coverage Report
 command: `npm test`
 outPut:
 ```
-API
+  API
     GET Product Info
-        Product data retrieved sucessfully. Resolving promise...
-        Pricing data retrieved sucessfully. Resolving promise...
-        Required product and price data retrieved successfuly. Building response...
-          ✓ data (530ms)
-          ✓ data
-          ✓ data (380ms)
+Product data retrieved sucessfully. Resolving promise...
+Pricing data retrieved sucessfully. Resolving promise...
+Required product and price data retrieved successfuly. Building response...
+      ✓ GET valid product (561ms)
+Product data retrieved sucessfully. Resolving promise...
+Pricing data retrieved sucessfully. Resolving promise...
+Required product and price data retrieved successfuly. Building response...
+      ✓ GET valid product (402ms)
+Product data retrieved sucessfully. Resolving promise...
+Pricing data retrieved sucessfully. Resolving promise...
+Required product and price data retrieved successfuly. Building response...
+      ✓ GET valid product (400ms)
+      ✓ GET product with invalid id
+      ✓ GET product with non-existing id (380ms)
+Product data retrieved sucessfully. Resolving promise...
+I am inside error
+      ✓ GET product for item without price record (444ms)
     GET Price Info
-          ✓ data
-          ✓ data
-          1) data
-  5 passing (931ms)
+      ✓ GET price for valid product
+      ✓ GET price for invalid product id
+      1) GET price for non-existing product id
+
+
+  8 passing (2s)
   1 failing
 
   1) API
        GET Price Info
-         data:
+         GET price for non-existing product id:
 
       Uncaught AssertionError: expected { Object (_events, _eventsCount, ...) } to have status code 404 but got 200
       + expected - actual
@@ -30,9 +43,10 @@ API
       -200
       +404
       
-      at /Users/prakanda/assessment/myretail-target/test/task.js:63:34
+      at /Users/prakanda/assessment/myretail-target/test/app.test.js:127:32
       at Test.Request.callback (node_modules/superagent/lib/node/index.js:716:12)
-      at IncomingMessage.<anonymous> (node_modules/superagent/lib/node/index.js:916:18)
+      at /Users/prakanda/assessment/myretail-target/node_modules/superagent/lib/node/index.js:916:18
+      at IncomingMessage.<anonymous> (node_modules/superagent/lib/node/parsers/json.js:19:7)
       at endReadableNT (_stream_readable.js:1187:12)
       at processTicksAndRejections (internal/process/task_queues.js:84:21)
 
@@ -41,16 +55,17 @@ API
 --------------------------------------------|---------|----------|---------|---------|-------------------
 File                                        | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 --------------------------------------------|---------|----------|---------|---------|-------------------
-All files                                   |      92 |    73.33 |   90.48 |   91.92 |                   
- myretail-target                            |     100 |      100 |     100 |     100 |                   
-  app.js                                    |     100 |      100 |     100 |     100 |                   
- myretail-target/src/api/components/price   |   89.29 |    57.14 |     100 |   88.89 |                   
-  priceModel.js                             |      75 |       40 |     100 |      75 | 32-36             
+All files                                   |   97.09 |    93.75 |   95.24 |   97.06 |                   
+ myretail-target                            |     100 |       50 |     100 |     100 |                   
+  app.js                                    |     100 |       50 |     100 |     100 | 18                
+ myretail-target/src/api/components/price   |     100 |      100 |     100 |     100 |                   
+  priceModel.js                             |     100 |      100 |     100 |     100 |                   
   pricingRoutes.js                          |     100 |      100 |     100 |     100 |                   
   pricingService.js                         |     100 |      100 |     100 |     100 |                   
- myretail-target/src/api/components/product |   91.94 |     87.5 |   88.24 |   91.94 |                   
+ myretail-target/src/api/components/product |   95.38 |      100 |   94.12 |   95.38 |                   
   productRoutes.js                          |     100 |      100 |     100 |     100 |                   
-  productService.js                         |   89.13 |     87.5 |   84.62 |   89.13 | 47,51,96-108      
+  productService.js                         |      94 |      100 |   92.31 |      94 | 100-112           
   productUtils.js                           |     100 |      100 |     100 |     100 |                   
 --------------------------------------------|---------|----------|---------|---------|-------------------
+npm ERR! Test failed.  See above for more details.
 ```
