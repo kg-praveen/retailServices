@@ -1,7 +1,16 @@
 # retailServices
-Provides services for retail operations. 
+Provides product service implementation for a retail store. Product/Browse domain API supports view of product data. This is done by aggregating data from multiple internal data sources. 
+
 1) Tools used
+> node
+> express
+> mocha
+> chai
+> dotenv
+
 2) API supported
+> GET /browse/product-aggregator
+
 
 ## How to install and run the app
 ### Download code
@@ -70,7 +79,7 @@ Standard options like below can be used to interact with the API.
 1) Post-man
 2) Chrome browser with a JSON formatter plug-in
 
-For web app to use the API, there is no need of a API_KEY at this point of time. Will be added later.
+No headers or keys or tokens are required. Please use sample URLs from below to view various responses. For web app to use the API, there is no need of a API_KEY at this point of time. Will be added later.
 
 ### Sample Interaction output
  Case: `product-aggregator 200/SUCCESS` <br/>
