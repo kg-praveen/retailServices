@@ -7,8 +7,7 @@ API supported
 
 ## Supported API methods
 
-
-## How to run the app
+## How to interact with APIs
 
 ## Unit Test and Code Coverage Report
 command: `npm test`
