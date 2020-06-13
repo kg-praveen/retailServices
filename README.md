@@ -4,7 +4,7 @@ Provides services for retail operations
 ## Unit Test and Code Coverage
 Command: `npm test`
 OutPut:
-
+```
 API
     GET Product Info
         Product data retrieved sucessfully. Resolving promise...
@@ -53,3 +53,4 @@ All files                                   |      92 |    73.33 |   90.48 |   9
   productService.js                         |   89.13 |     87.5 |   84.62 |   89.13 | 47,51,96-108      
   productUtils.js                           |     100 |      100 |     100 |     100 |                   
 --------------------------------------------|---------|----------|---------|---------|-------------------
+```
