@@ -15,7 +15,7 @@ app.use(`\/${process.env.PRODUCT_API_SUFFIX}\/${process.env.API_VERSION}`,produc
 app.use(`\/${process.env.PRICE_API_SUFFIX}\/${process.env.API_VERSION}`,pricingRouter);
 
 //starting server
-const PORT = process.env.SERVER_PORT || 3000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`App started on port  ${PORT}`);
     
