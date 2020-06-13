@@ -7,14 +7,14 @@ API supported
 ### Download code
 1) Create a folder in your system where you want the app to run
 
-2) Initialize GIT report using command 'git init' would generate an similar outpuse like:
-...
+2) Initialize GIT report using command `git init` would generate an similar outpuse like:
+```
 Initialized empty Git repository in <your dir location>
-...
+```
 
-3) Clone the repository using command 'git clone <url>' - copy the URL from github clone/download location. 
+3) Clone the repository using command `git clone <url>` - copy the URL from github clone/download location. 
 would generate an similar outpuse like:
-...
+```
 Cloning into 'retailServices'...
 remote: Enumerating objects: 260, done.
 remote: Counting objects: 100% (260/260), done.
@@ -22,7 +22,7 @@ remote: Compressing objects: 100% (159/159), done.
 remote: Total 260 (delta 101), reused 186 (delta 44), pack-reused 0
 Receiving objects: 100% (260/260), 70.24 KiB | 368.00 KiB/s, done.
 Resolving deltas: 100% (101/101), done.
-...
+```
 4) Navigate to the created app folder
 
 ## Supported API methods
