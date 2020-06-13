@@ -1,8 +1,8 @@
 # retailServices
 Provides services for retail operations
 
-# Unit Test and Code Coverage
-Command: npm test
+## Unit Test and Code Coverage
+Command: `npm test`
 OutPut:
 
 API
