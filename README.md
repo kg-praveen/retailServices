@@ -120,7 +120,6 @@ Sample output:
 }
 ```
 
-```
 Case: `product-aggregator 404/NOT FOUND` - this is case where price data alone does not exit<br/>
 Sample URL: `http://localhost:3000/browse/v1/product-aggregator/1386042a` <br/>
 Sample output: 
@@ -134,9 +133,9 @@ Sample output:
 ## Unit Test and Code Coverage Report
 Run command `npm test`to trigger unit tests and covrage report. 
 
-> Sample failing and low coverage as I was building
+#### Sample failing and low coverage as I was building
 
-``
+```
  API
     GET Product Info
 Product data retrieved sucessfully. Resolving promise...
@@ -199,10 +198,10 @@ All files                                   |   97.06 |    93.75 |   95.24 |   9
   productUtils.js                           |     100 |      100 |     100 |     100 |                   
 --------------------------------------------|---------|----------|---------|---------|-------------------
 npm ERR! Test failed.  See above for more details.
-``
-> Sample after completion
+```
+#### Sample after completion
 
-``
+```
   API
     GET Product Info
 Product data retrieved sucessfully. Resolving promise...
