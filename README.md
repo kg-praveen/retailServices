@@ -7,18 +7,16 @@ OutPut:
 
 API
     GET Product Info
-Product data retrieved sucessfully. Resolving promise...
-Pricing data retrieved sucessfully. Resolving promise...
-Required product and price data retrieved successfuly. Building response...
-      ✓ data (530ms)
-      ✓ data
-      ✓ data (380ms)
+        Product data retrieved sucessfully. Resolving promise...
+        Pricing data retrieved sucessfully. Resolving promise...
+        Required product and price data retrieved successfuly. Building response...
+          ✓ data (530ms)
+          ✓ data
+          ✓ data (380ms)
     GET Price Info
-      ✓ data
-      ✓ data
-      1) data
-
-
+          ✓ data
+          ✓ data
+          1) data
   5 passing (931ms)
   1 failing
 
