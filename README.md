@@ -73,7 +73,7 @@ Standard options like below can be used to interact with the API.
 For web app to use the API, there is no need of a API_KEY at this point of time. Will be added later.
 
 ### Sample Interaction output
- Case: `product-aggregator 200/SUCCESS`
+ Case: `product-aggregator 200/SUCCESS` <br/>
  Sample URL: `http://localhost:3000/browse/v1/product-aggregator/13860428`
  Sample output: 
 ```
