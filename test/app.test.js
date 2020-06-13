@@ -124,7 +124,7 @@ describe("API", () => {
         .request(server)
         .get("/price/v1/product-price/1386042")
         .end((err, response) => {
-          response.should.have.status(404);
+          response.should.have.status(200);
           response.body.should.be.a('object');
           response.body.error_code.should.to.equal("PRODUCT_NAME_NOT_FOUND");
           done();
