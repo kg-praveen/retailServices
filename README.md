@@ -1,5 +1,14 @@
 # retailServices
 Provides services for retail operations
+Tools used
+API supported
+
+## How to install and run the app
+
+## Supported API methods
+
+
+## How to run the app
 
 ## Unit Test and Code Coverage Report
 command: `npm test`
