@@ -1,7 +1,7 @@
 # retailServices
 Provides services for retail operations. 
-Tools used. 
-API supported. 
+1) Tools used
+2) API supported
 
 ## How to install and run the app
 ### Download code
@@ -58,9 +58,58 @@ App started on port  3000
 #### Sample URL
 `http://localhost:3000/browse/v1/product-aggregator/13860428`
 
+### product-price
 2) This app has mock implementation of GET method to retrieve price for a given product
+#### URI template
+`http://<host>:<port>/price/v1/product-price/<productId>`
+#### Sample URL
+`http://localhost:3000/price/v1/product-price/13860428`
 
 ## How to interact with APIs
+Standard options like below can be used to interact with the API.
+1) Post-man
+2) Chrome browser with a JSON formatter plug-in
+
+For web app to use the API, there is no need of a API_KEY at this point of time. Will be added later.
+
+### Sample Interaction output
+Case: `product-aggregator 200/SUCCESS`
+Sample URL: `http://localhost:3000/browse/v1/product-aggregator/13860428`
+Sample output: 
+```
+{
+   "product":{
+      "product_id":"13860428",
+      "item":{
+         "product_description":{
+            "title":"The Big Lebowski (Blu-ray)"
+         }
+      },
+      "price":{
+         "current_price":"20.10",
+         "currency":"USD"
+      }
+   }
+}
+```
+Case: `product-aggregator 404/NOT FOUND`
+Sample URL: `http://localhost:3000/browse/v1/product-aggregator/1386042`
+Sample output: 
+```
+{
+   "error_code":"PRODUCT_NAME_NOT_FOUND",
+   "error_message":"Product Name information is missing"
+}
+```
+Case: `product-aggregator 400/BAD REQUEST`
+Sample URL: `http://localhost:3000/browse/v1/product-aggregator/1386042a`
+Sample output: 
+```
+{
+   "error_code":"INVALID_PRODUCTID",
+   "error_message":"ProuctID is not valid"
+}
+```
 
 ## Unit Test and Code Coverage Report
 command: `npm test`
